@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <script href="{{ url_for('static', filename='js/darkMode.bundle.js') }}"></script>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+        <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" />
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='img/apple-touch-icon-72x72.png') }}" />
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='img/apple-touch-icon-114x114.png') }}" />
+    </head>
+    <body
+        class="dark:bg-jacarta-900 font-body text-jacarta-500 overflow-x-hidden"
+        itemscope
+        itemtype="http://schema.org/WebPage"
+        >
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        <script href="{{ url_for('static', filename='js/app.bundle.js') }}"></script>
+    </body>
+</html>

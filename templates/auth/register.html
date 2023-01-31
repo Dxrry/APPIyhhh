@@ -1,0 +1,65 @@
+{% extends 'auth/auth_layout.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block content%}
+<section class="relative h-screen">
+    <div class="lg:flex lg:h-full">
+        <!-- Left -->
+        <div class="relative text-center lg:w-1/2 bg-accent sm:hidden">
+            <img src="{{ url_for('static', filename='img/login.svg') }}" alt="login" class="absolute h-full w-full object-cover" />
+        </div>
+        <!-- Right -->
+        <div class="relative flex items-center justify-center p-[10%] lg:w-1/2">
+            <picture class="pointer-events-none absolute inset-0 -z-10">
+                <img src="{{ url_for('static', filename='img/gradient_light.jpg') }}" alt="gradient" class="h-full w-full" />
+            </picture>
+            <div class="w-full max-w-[25.625rem] text-center">
+                <h1 class="text-jacarta-700 font-display mb-6 text-4xl">Sign Up</h1>
+                <p class="text-xl leading-normal text-red">{{ msg }}</p>
+                <p class="mb-10 text-lg leading-normal">
+                    Have an account? Kamu bertanya tanya bagaimana cara login?
+                    <br>Click here for
+                    <a href="{{ url_for('login') }}" class="text-accent">Sign In</a>
+                </p>
+                <form action="{{ url_for('register') }}" method="post">
+                    <div class="mb-2">
+                        <input
+                        name="email"
+                        class="js-wallet bg-jacarta-600 hover:bg-jacarta-600 mb-4 flex w-full items-center justify-center rounded-xl border-2 border-jacarta-700 py-4 px-8 text-center font-semibold transition-all"
+                        placeholder="Email"
+                        type="email"
+                        required
+                        />
+                    </div>
+                    <div class="mb-2">
+                        <input
+                        name="username"
+                        class="js-wallet bg-jacarta-600 hover:bg-jacarta-600 mb-4 flex w-full items-center justify-center rounded-xl border-2 border-jacarta-700 py-4 px-8 text-center font-semibold transition-all"
+                        placeholder="Username"
+                        type="text"
+                        required
+                        />
+                    </div>
+                    <div class="mb-2">
+                        <input
+                        name="password"
+                        class="js-wallet bg-jacarta-600 hover:bg-jacarta-600 mb-4 flex w-full items-center justify-center rounded-xl border-2 border-jacarta-700 py-4 px-8 text-center font-semibold transition-all"
+                        placeholder="Password"
+                        type="password"
+                        required
+                        />
+                    </div>
+                    <div class="mt-10">
+                        <button
+                            class="js-wallet bg-accent hover:bg-accent-dark mb-4 flex w-full items-center justify-center rounded-xl border-2 border-transparent py-4 px-8 text-center font-semibold text-white transition-all"
+                            data-bs-toggle="modal"
+                            data-bs-target="#walletModal"
+                        >
+                        <span>Sign Up</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

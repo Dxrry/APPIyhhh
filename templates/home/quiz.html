@@ -1,0 +1,92 @@
+{% extends 'home/layout.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<section
+    class="relative bg-cover bg-center bg-no-repeat py-32 after:absolute after:inset-0"
+    style="background-image: url('/static/img/banner.svg')"
+    >
+    <div class="container relative z-10">
+        <h1 id="titlePages" class="font-display text-center text-4xl font-medium text-jacarta-700 dark:text-white">Questions {{ backend_data["fake_id"] }} of {{ backend_data["soal_count"] }}</h1>
+    </div>
+</section>
+<section class="dark:bg-jacarta-900 relative py-24">
+    <div class="container">
+        <div class="lg:flex">
+            <div class="mb-12 lg:mb-0 lg:w-2/3 lg:pr-12">
+                <h2 class="font-display text-jacarta-700 mb-4 text-xl dark:text-white">Questions</h2>
+                <p class="dark:text-jacarta-300 mb-16 text-lg leading-normal">
+                    {{ backend_data["question"] }}
+                </p>
+                <form action="{{ url_for('test', IdSoal=backend_data['soal_id'], IdQuest=backend_data['next_id']) }}" method="POST">
+                    <input type="hidden" name="soal_id" value="{{ backend_data['fake_id'] }}">
+                    {% for key in backend_data["choice"] %}
+                    
+                    <div class="mb-6 border-2 border-jacarta-100 text-jacarta-700 dark:border-jacarta-700 dark:bg-jacarta-900 group hover:bg-accent mr-2.5 inline-flex items-center rounded-xl bg-white px-4 py-3 hover:border-transparent hover:text-white dark:text-white dark:hover:bg-accent dark:hover:border-transparent">
+                        <input class="pt-6 px-3 mr-4 peer" value="{{ key }}" type="radio" name="user_answer" id="{{ key }}">
+                        <span class="ml-10 text-md font-medium">
+                            <div class="form-check">
+                                <label class="form-check-label inline-block text-gray-800" for="{{ key }}">
+                                    {{ backend_data["choice"][key] | capitalize }}
+                                </label>
+                            </div>
+                        </span>
+                    </div>
+                    <br>
+
+                    {% endfor %}
+                    <div class="mt-8 flex space-x-4">
+                        <a
+                        href="collections.html"
+                        class="text-jacarta-700 hover:bg-accent-dark w-full rounded-xl bg-white py-3 px-8 border-2 border-jacarta-700 dark:border-transparent text-center font-semibold transition-all hover:text-white"
+                        >
+                        Back
+                    </a>
+                        <button
+                        class="bg-accent hover:bg-accent-dark w-full rounded-xl py-3 px-8 text-center font-semibold text-white transition-all"
+                        >
+                        Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="lg:w-1/3 lg:pl-5">
+                <h2 class="font-display text-jacarta-700 mb-4 text-xl dark:text-white">All Questions</h2>
+                <div class="flex flex-wrap">
+                    {% for key in backend_data["list_soal"] %}
+                    <a href="{{ url_for('test', IdSoal=backend_data['soal_id'], IdQuest=key) }}" class="dark:border-jacarta-700 dark:bg-jacarta-900 group dark:hover:bg-accent hover:bg-accent border-jacarta-700 mr-2.5 mb-2.5 inline-flex items-center rounded-xl border-2 bg-white px-4 py-3 hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent">
+                        <span class="text-2xs font-medium">{{ key }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <br>
+
+                <h2 class="font-display text-jacarta-700 mb-4 text-xl dark:text-white">History Answered</h2>
+                <div class="flex flex-wrap">
+                    {% for key in backend_data["user_answer"] %}
+                    <a href="{{ url_for('test', IdSoal=backend_data['soal_id'], IdQuest=key) }}" class="dark:border-jacarta-700 dark:bg-jacarta-900 group dark:hover:bg-accent hover:bg-accent border-jacarta-700 mr-2.5 mb-2.5 inline-flex items-center rounded-xl border-2 bg-white px-4 py-3 hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent">
+                        <span class="text-2xs font-medium">{{ key }}</span>
+                    </a>
+                    
+                    {% endfor %}
+                </div>         
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block customjs %}
+<script>
+(function($){
+	"use strict";
+    // If Else {% if backend_data["id"] in backend_data["user_answer"] %}
+    $("#titlePages").append(" ( Edit Jawaban ) ")
+    $('#{{ backend_data["user_answer"][backend_data["id"]] }}').prop('checked', true);
+    // End If {% endif %}
+}(jQuery));
+</script>
+{% endblock %}
