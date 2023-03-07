@@ -39,13 +39,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `username`, `email`, `password`) VALUES
-(1, 'p', 'ppp@pp.d', 'p'),
-(3, 's', 'swjlia98@gmail.com', 's'),
-(4, 'cc', 'cc@cc.vs', 'cc'),
-(5, 'k', 'k@k.k', 'k\\'),
-(6, 'sdasd@c.c', 'sdasd@c.c', 'sdasd@c.c'),
-(7, 'sc', 'sc@gmail.com', 'sc'),
-(8, 'test', 'test@gmail.com', 'test');
+(1, 'p', 'ppp@pp.d', 'p');
 
 -- --------------------------------------------------------
 
