@@ -6,8 +6,8 @@ import pymysql
 def connection():
     s = "localhost"
     d = "community_app"
-    u = "xxxxxxxx"
-    p = "xxxxxxxx"
+    u = "chickennugget"
+    p = "chickennuggetpassword"
     conn = pymysql.connect(
         host=s, user=u, password=p, database=d, cursorclass=pymysql.cursors.DictCursor
     )
